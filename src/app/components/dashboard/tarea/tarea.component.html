@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="display-3">Lista de Tareas</h1>
+    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalAddTarea">Agregar
+    </button>
+  </div>
+
+  <hr>
+  <table class="table">
+    <thead class="thead">
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Descripcion</th>
+        <th>Fecha Entrega</th>
+        <th>Fecha Registro</th>
+        <th>Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tarea of tareaService.tareas">
+        <td>{{tarea.idTarea}}</td>
+        <td>{{tarea.nombre}}</td>
+        <td>{{tarea.descripcion}}</td>
+        <td>{{tarea.fechaEntrega}}</td>
+        <td>{{tarea.fechaRegistro}}</td>
+        <td>
+          <div class="btn-group">
+            <button class="btn btn-outline-warning" data-toggle="modal" data-target="#modalEditTarea">Actualizar</button>
+            <button class="btn btn-outline-danger" (click)="eliminarTarea(tarea.idTarea)">Eliminar</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<app-add-tarea></app-add-tarea>

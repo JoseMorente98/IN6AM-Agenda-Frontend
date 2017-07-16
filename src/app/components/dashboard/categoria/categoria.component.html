@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="display-3">Lista de Categorías</h1>
+    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalAddCategoria">Agregar
+    </button>
+  </div>
+
+  <hr>
+  <table class="table">
+    <thead class="thead">
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let categoria of categoriaService.categorias">
+        <td>{{categoria.idCategoria}}</td>
+        <td>{{categoria.nombre}}</td>
+        <td>
+          <div class="btn-group">
+            <button class="btn btn-outline-warning" data-toggle="modal" data-target="#modalEditCategoria">Actualizar</button>
+            <button class="btn btn-outline-danger" (click)="eliminarCategoria(categoria.idCategoria)">Eliminar</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-add-categoria></app-add-categoria>
+<app-edit-categoria></app-edit-categoria>

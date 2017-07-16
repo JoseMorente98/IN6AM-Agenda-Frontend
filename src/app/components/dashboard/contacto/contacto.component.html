@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="display-3">Lista de Contactos</h1>
+    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalAddContacto">Agregar
+    </button>
+  </div>
+
+  <hr>
+  <table class="table">
+    <thead class="thead">
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Telefono</th>
+        <th>Correo</th>
+        <th>Categoría</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let contacto of contactoService.contactos">
+        <td>{{contacto.idContacto}}</td>
+        <td>{{contacto.nombre}}</td>
+        <td>{{contacto.apellido}}</td>
+        <td>{{contacto.telefono}}</td>
+        <td>{{contacto.correo}}</td>
+        <td>{{contacto.categoriaNombre}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<app-add-contacto></app-add-contacto>

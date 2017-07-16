@@ -1,16 +1,73 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+//ROUTES
+import { app_routing } from './app.routes';
+
+//SERVICES
+import { UsuarioService } from './services/usuario.service';
+import { CategoriaService } from './services/categoria.service';
+import { ContactoService } from './services/contacto.service';
+import { TareaService } from './services/tarea.service';
+import { AuthGuardService } from './services/auth-guard.service';
+
+//COMPONENTES
 import { AppComponent } from './app.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { NavbarComponent } from './components/dashboard/navbar/navbar.component';
+import { LoginComponent } from './components/login/login.component';
+import { UsuarioComponent } from './components/dashboard/usuario/usuario.component';
+import { SignupComponent } from './components/signup/signup.component';
+
+//COMPONENTES CATEGORIA
+import { CategoriaComponent } from './components/dashboard/categoria/categoria.component';
+import { AddCategoriaComponent } from './components/dashboard/categoria/modal/agregar/addCategoria.component';
+import { EditCategoriaComponent } from './components/dashboard/categoria/modal/editar/editCategoria.component';
+
+//COMPONENTES TAREAS
+import { TareaComponent } from './components/dashboard/tarea/tarea.component';
+import { AddTareaComponent } from './components/dashboard/tarea/modal/agregar/addTarea.component';
+import { EditTareaComponent } from './components/dashboard/tarea/modal/editar/editTarea.component';
+
+//COMPONENTES USUARIOS
+import { ContactoComponent } from './components/dashboard/contacto/contacto.component';
+import { AddContactoComponent } from './components/dashboard/contacto/modal/agregar/addContacto.component';
+import { EditContactoComponent } from './components/dashboard/contacto/modal/editar/editContacto.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    UsuarioComponent,
+    ContactoComponent,
+    CategoriaComponent,
+    TareaComponent,
+    SignupComponent,
+    DashboardComponent,
+    NavbarComponent,
+    AddCategoriaComponent,
+    EditCategoriaComponent,
+    AddTareaComponent,
+    EditTareaComponent,
+    AddContactoComponent,
+    EditContactoComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpModule,
+    FormsModule,
+    ReactiveFormsModule,
+    app_routing
   ],
-  providers: [],
+  providers: [
+    UsuarioService,
+    CategoriaService,
+    ContactoService,
+    TareaService,
+    AuthGuardService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
