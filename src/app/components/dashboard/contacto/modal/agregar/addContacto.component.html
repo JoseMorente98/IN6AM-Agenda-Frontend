@@ -2,7 +2,7 @@
 <div  id="modalAddContacto" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <form [formGroup]="formularioContacto" (ngSubmit)="agregarContacto()">
+      <form >
         <div class="modal-header">
           <button type="button" class="close" data-dissmiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -29,13 +29,13 @@
           <div class="form-group">
             <label for="inputCategorias">Categorias</label>
             <select class="form-control">
-                <option *ngFor="let categoria of categoriaService.categorias" value="categoria.idCategoria">{{categoria.nombre}}</option>
+                <!--<option *ngFor="let categoria of categoriaService.categorias" value="categoria.idCategoria">{{categoria.nombre}}</option>-->
             </select>
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-secondary" data-dissmiss="modal">Cerrar</button>
-          <button type="submit" class="btn btn-outline-primary" [disabled]="!formularioContacto.valid">Agregar</button>
+          <button type="submit" class="btn btn-outline-primary">Agregar</button>
         </div>
       </form>
     </div>
