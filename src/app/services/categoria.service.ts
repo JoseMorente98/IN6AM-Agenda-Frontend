@@ -14,10 +14,9 @@ export class CategoriaService{
 
     //Obtener Categorias
     getCategorias() {
-        return this._http.get(this.uriCategoria)
-        .map(res => {
-            this.categorias = res.json();
-        });
+      let uriCategoria = "http://localhost:3000/api/categorias";
+      return this._http.get(uriCategoria)
+      .map(res => res.json());
     }
 
     //Agregar Categoria

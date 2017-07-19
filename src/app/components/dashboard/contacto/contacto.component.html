@@ -18,13 +18,13 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let contacto of contactoService.contactos">
+      <tr *ngFor="let contacto of contactos">
         <td>{{contacto.idContacto}}</td>
         <td>{{contacto.nombre}}</td>
         <td>{{contacto.apellido}}</td>
         <td>{{contacto.telefono}}</td>
         <td>{{contacto.correo}}</td>
-        <td>{{contacto.categoriaNombre}}</td>
+        <td>{{contacto.nombreCategoria}}</td>
         <td>
           <div class="btn-group">
             <button class="btn btn-outline-warning" data-toggle="modal" data-target="#modalEditContacto">Actualizar</button>

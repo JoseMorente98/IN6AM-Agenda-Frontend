@@ -6,13 +6,24 @@ import { ContactoService } from '../../../services/contacto.service';
   templateUrl: './contacto.component.html',
   styles: []
 })
-export class ContactoComponent implements OnInit {
 
+export class ContactoComponent implements OnInit {
+  contactos:any[] = [];
+
+  //Constructor
   constructor(private contactoService:ContactoService) { }
 
+  //Metodo Inicializar
+  public inicializar() {
+    this.contactoService.getContactos().subscribe(data => {
+      this.contactos = data;
+      console.log(this.contactos);
+    });
+  }
+
+
   ngOnInit() {
-    this.contactoService.getContactos().subscribe();
-    
+    this.inicializar();
   }
 
 }

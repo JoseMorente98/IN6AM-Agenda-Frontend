@@ -5,7 +5,6 @@ import 'rxjs/add/operator/map';
 
 @Injectable() 
 export class ContactoService{
-    uriContacto = "http://localhost:3000/api/contactos";
     contactos:any[];
 
     //Constructor
@@ -13,11 +12,29 @@ export class ContactoService{
     }
 
     //Obtener Contactos
-    getContactos() {
-        return this._http.get(this.uriContacto)
-        .map(res => {
-            this.contactos = res.json();
-        });
+    public getContactos() {
+      let uriContacto = "http://localhost:3000/api/contactos";
+      let headers = new Headers({
+        'Authorization': localStorage.getItem('token')
+      });
+      let options = new RequestOptions({ headers: headers});
+      return this._http.get(uriContacto, options)
+      .map(res => res.json());
+    }
+
+    //Agregar Contactos
+    public newContacto(contacto:any) {
+    let uriContacto = "http://localhost:3000/api/contactos/";
+    let data = JSON.stringify(contacto);
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': localStorage.getItem('token')
+    });
+
+    return this._http.post(uriContacto, data, { headers })
+    .map(res => {
+      return res.json();
+    });
     }
 
     //Agregar Contactos

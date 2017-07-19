@@ -20,7 +20,6 @@ export class UsuarioService {
     let uriUsuario:string = "http://localhost:3000/auth/";
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    //headers.append('authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsIm5pY2siOiJASkh1ZXJ0YXMiLCJjb250cmFzZW5hIjoiMTIzNCIsImlhdCI6MTQ5OTk2NzgwMCwiZXhwIjoxNDk5OTcxNDAwfQ.r_8l_8Is_oxopIQWamCLGm5iJL2UfXcOaimRkYO9bWM');
 
     let options = new RequestOptions({headers : headers});
     let data = JSON.stringify(usuario);
@@ -32,7 +31,6 @@ export class UsuarioService {
       if(token) {
         console.log("Si existe el token");
         localStorage.setItem('token', token);
-        //localStorage.setItem('idUsuario', res.json().USUARIO.idUsuario);
         this.router.navigate(['/dashboard/usuario']);
       } else {
         console.log("No existen token");
