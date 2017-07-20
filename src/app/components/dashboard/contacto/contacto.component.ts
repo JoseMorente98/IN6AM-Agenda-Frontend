@@ -21,9 +21,17 @@ export class ContactoComponent implements OnInit {
     });
   }
 
-
   ngOnInit() {
     this.inicializar();
+  }
+
+  borrarContacto(idContacto:any) {
+    this.contactoService.eliminarContacto(idContacto)
+    .subscribe(res => {
+      if(res.estado) {
+        this.inicializar();
+      }
+    });
   }
 
 }

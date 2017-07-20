@@ -1,6 +1,5 @@
 import { ContactoService } from '../../../../../services/contacto.service';
 import { CategoriaService } from '../../../../../services/categoria.service';
-import { ContactoComponent } from '../../../../../components/dashboard/contacto/contacto.component';
 
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -25,8 +24,7 @@ export class AddContactoComponent implements OnInit {
   private contactoService:ContactoService,
   private router:Router,
   private categoriaService:CategoriaService,
-  private activatedRoute:ActivatedRoute,
-  private contactoComponent:ContactoComponent
+  private activatedRoute:ActivatedRoute
   ) { 
     let validaciones = [
       Validators.required, Validators.minLength(50)
@@ -59,6 +57,9 @@ export class AddContactoComponent implements OnInit {
         if(res.estado) {
           this.notificacion.mensaje = res.mensaje;
           this.notificacion.estado = res.estado;
+          setTimeout(() => {
+            this.router.navigate(['/dashboard/contacto']);
+          }, 1000);
         }
       });
   }

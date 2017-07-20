@@ -1,8 +1,7 @@
 <div class="container">
   <div class="jumbotron">
     <h1 class="display-3">Lista de Contactos</h1>
-    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalAddContacto">Agregar
-    </button>
+    <button class="btn btn-outline-primary" [routerLink]="['/dashboard/contacto', 'nuevo']">Nuevo Contacto</button>
   </div>
 
   <hr>
@@ -27,13 +26,11 @@
         <td>{{contacto.nombreCategoria}}</td>
         <td>
           <div class="btn-group">
-            <button class="btn btn-outline-warning" data-toggle="modal" data-target="#modalEditContacto">Actualizar</button>
-            <button class="btn btn-outline-danger" (click)="eliminarContacto(contacto.idContacto)">Eliminar</button>
+            <button class="btn btn-outline-warning" [routerLink]="['/dashboard/contacto', contacto.idContacto]" data-toggle="modal" data-target="#modalEditContacto">Actualizar</button>
+            <button class="btn btn-outline-danger" (click)="borrarContacto(contacto.idContacto)">Eliminar</button>
           </div>
         </td>
       </tr>
     </tbody>
   </table>
 </div>
-<app-add-contacto></app-add-contacto>
-<app-edit-contacto></app-edit-contacto>

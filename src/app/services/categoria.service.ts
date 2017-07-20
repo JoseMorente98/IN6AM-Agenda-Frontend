@@ -39,7 +39,7 @@ export class CategoriaService{
   }
 
   //Eliminar Categoria
-    public deleteCategoria(idCategoria:  any){
+  public deleteCategoria(idCategoria:  any){
     let uriEliminarCategoria :string = "http://localhost:3000/api/categorias/" + idCategoria;
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -48,6 +48,21 @@ export class CategoriaService{
       .subscribe(res => {
         console.log(res.json());
         this._router.navigate(['dashboard']);
+      }, error => {
+        console.log(error.text());
+      });
+  }
+
+  //Eliminar Categoria
+    public getCategoria(idCategoria:any){
+    let uriCategoria :string = "http://localhost:3000/api/categorias/" + idCategoria;
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    let options = new RequestOptions({headers: headers})
+    this._http.get(uriCategoria, options)
+      .subscribe(res => {
+        console.log(res.json());
+        return res.json();
       }, error => {
         console.log(error.text());
       });

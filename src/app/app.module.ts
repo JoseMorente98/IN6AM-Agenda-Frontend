@@ -12,6 +12,7 @@ import { CategoriaService } from './services/categoria.service';
 import { ContactoService } from './services/contacto.service';
 import { TareaService } from './services/tarea.service';
 import { AuthGuardService } from './services/auth-guard.service';
+import { HistorialService } from './services/historial.service';
 
 //COMPONENTES
 import { AppComponent } from './app.component';
@@ -33,8 +34,10 @@ import { EditTareaComponent } from './components/dashboard/tarea/modal/editar/ed
 
 //COMPONENTES USUARIOS
 import { ContactoComponent } from './components/dashboard/contacto/contacto.component';
-import { AddContactoComponent } from './components/dashboard/contacto/modal/agregar/addContacto.component';
-import { EditContactoComponent } from './components/dashboard/contacto/modal/editar/editContacto.component';
+import { FormContactoComponent } from './components/dashboard/contacto/formContacto.component';
+
+//IMPORTAR HISTORIAL
+import { HistorialComponent } from './components/dashboard/historial/historial.component';
 
 @NgModule({
   declarations: [
@@ -51,8 +54,8 @@ import { EditContactoComponent } from './components/dashboard/contacto/modal/edi
     EditCategoriaComponent,
     AddTareaComponent,
     EditTareaComponent,
-    AddContactoComponent,
-    EditContactoComponent
+    FormContactoComponent,
+    HistorialComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +69,8 @@ import { EditContactoComponent } from './components/dashboard/contacto/modal/edi
     CategoriaService,
     ContactoService,
     TareaService,
-    AuthGuardService
+    AuthGuardService,
+    HistorialService
   ],
   bootstrap: [AppComponent]
 })

@@ -15,12 +15,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let categoria of categoriaService.categorias">
+      <tr *ngFor="let categoria of categorias">
         <td>{{categoria.idCategoria}}</td>
         <td>{{categoria.nombre}}</td>
         <td>
           <div class="btn-group">
-            <button class="btn btn-outline-warning" data-toggle="modal" data-target="#modalEditCategoria">Actualizar</button>
+            <button class="btn btn-outline-warning" (click)="cargarCategoria(categoria.idCategoria)" data-toggle="modal" data-target="#modalEditCategoria">Actualizar</button>
             <button class="btn btn-outline-danger" (click)="eliminarCategoria(categoria.idCategoria)">Eliminar</button>
           </div>
         </td>
@@ -30,4 +30,30 @@
 </div>
 
 <app-add-categoria></app-add-categoria>
-<app-edit-categoria></app-edit-categoria>
+
+<!--MODAL CATEGORIA -->
+<div  id="modalEditCategoria" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form>
+        <div class="modal-header">
+          <button type="button" class="close" data-dissmiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h3 class="modal-title">Actualizar Categorias</h3>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="inputNombre">Nombre </label>
+            <input class="form-control" type="text" name="inputIdCategoria" id="inputIdCategoria" placeholder="ID Categoría" />
+            <input class="form-control" type="text" name="inputNombre" id="inputNombre" placeholder="Ingrese una categoría" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-default" data-dissmiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-outline-primary">Ingresar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
