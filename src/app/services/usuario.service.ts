@@ -46,15 +46,37 @@ export class UsuarioService {
   public verificarUsuario():boolean {
     if(localStorage.getItem('token')) {
       return true;
+    } else{
+      this.router.navigate(['/login/']);
     }
     return false;
   }
 
-  public getUsuarios() {
-    return this.http.get(this.usuarioUri)
+  public registrar(usuario:any) {
+    let uriUsuario:string = "http://localhost:3000/api/usuarios";
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    let options = new RequestOptions({headers : headers});
+    let data = JSON.stringify(usuario);
+
+    return this.http.post(uriUsuario, data, options)
     .map(res => {
-      this.usuarios = res.json();
-      console.log(this.usuarios);
-    });
+      return res.json();
+    }, error => {
+      console.log(error.text());
+    })
+
   }
+
+  //Obtener categorias
+    public getUsuario() {
+      let uriUsuario = "http://localhost:3000/api/usuarios";
+      let headers = new Headers({
+        'Authorization': localStorage.getItem('token')
+      });
+      let options = new RequestOptions({ headers: headers});
+      return this.http.get(uriUsuario, options)
+      .map(res => res.json());
+    }
 }

@@ -68,6 +68,8 @@ export class FormContactoComponent implements OnInit {
       this.contactoService.newContacto(this.formularioContacto.value)
       .subscribe(res => {
         if(res.estado) {
+          console.log(res.estado);
+          console.log(res.mensaje);
           this.notificacion.mensaje = res.mensaje;
           this.notificacion.estado = res.estado;
           setTimeout(() => {

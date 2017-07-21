@@ -1,23 +1,10 @@
 <div class="container">
-  <div class="jumbotron">
-    <h1>Lista de Usuarios</h1>
+  <div *ngFor="let usuario of usuario" class="jumbotron">
+    <h1 class="display-3">Bienvenido {{usuario.nick}}</h1>
+    <div class="btn-group">
+      <button class="btn btn-outline-danger">Eliminar Cuenta</button>
+      <button class="btn btn-outline-info">Editar Cuenta</button>
+    </div>
+    
   </div>
-
-  <hr>
-  <table class="table">
-    <thead class="thead">
-      <tr>
-        <th>ID</th>
-        <th>Usuario</th>
-        <th>Contraseña</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let usuario of usuarioService.usuarios">
-        <td>{{usuario.idUsuario}}</td>
-        <td>{{usuario.nick}}</td>
-        <td>{{usuario.contrasena}}</td>
-      </tr>
-    </tbody>
-  </table>
 </div>

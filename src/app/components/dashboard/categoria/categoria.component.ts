@@ -13,17 +13,23 @@ export class CategoriaComponent implements OnInit {
   constructor(private categoriaService:CategoriaService) { }
 
   ngOnInit() {
-     this.categoriaService.getCategorias().subscribe(data => {
+     this.inicializar();
+  }
+
+  public inicializar() {
+    this.categoriaService.getCategorias().subscribe(data => {
       this.categorias = data;
       console.log(this.categorias);
     });
   }
 
-  //ELIMINAR
-  public eliminarCategoria(idCategoria:any){
-    console.log("Se eliminó la " + idCategoria);
-    this.categoriaService.deleteCategoria(idCategoria);
-    location.reload(true);
+  borrarCategoria(idCategoria:any) {
+    this.categoriaService.deleteCategoria(idCategoria)
+    .subscribe(res => {
+      if(res.estado) {
+        this.inicializar();
+      }
+    });
   }
 
   //CARGAR

@@ -22,19 +22,4 @@ export class HistorialService{
       .map(res => res.json());
     }
 
-    //Agregar Contactos
-    public newHistorial(historial:any) {
-      let uri = "http://localhost:3000/api/historial/";
-      let data = JSON.stringify(historial);
-      let headers = new Headers({
-        'Content-Type': 'application/json',
-        'Authorization': localStorage.getItem('token')
-      });
-
-      return this._http.post(uri, data, { headers })
-      .map(res => {
-        return res.json();
-      });
-    }
-
 }

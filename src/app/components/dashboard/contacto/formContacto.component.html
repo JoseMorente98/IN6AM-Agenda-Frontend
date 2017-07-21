@@ -14,9 +14,11 @@
 
 <div *ngIf="formularioContacto">
   <form (ngSubmit)="guardarCambios()" [formGroup]="formularioContacto">
+          <div class="form-group row" [ngClass]="{'has-danger': !formularioContacto.controls['nombre'].valid  }">
           <div class="form-group row col-6">
             <label for="inputNombre">Nombre</label>
             <input class="form-control" type="text" formControlName="nombre" placeholder="Nombre del Contacto" />
+          </div>
           </div>
           <div class="form-group row col-6">
             <label for="inputApellido">Apellido</label>

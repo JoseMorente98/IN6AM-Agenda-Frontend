@@ -24,13 +24,11 @@ import { SignupComponent } from './components/signup/signup.component';
 
 //COMPONENTES CATEGORIA
 import { CategoriaComponent } from './components/dashboard/categoria/categoria.component';
-import { AddCategoriaComponent } from './components/dashboard/categoria/modal/agregar/addCategoria.component';
-import { EditCategoriaComponent } from './components/dashboard/categoria/modal/editar/editCategoria.component';
+import { FormCategoriaComponent } from './components/dashboard/categoria/formCategoria.component';
 
 //COMPONENTES TAREAS
 import { TareaComponent } from './components/dashboard/tarea/tarea.component';
-import { AddTareaComponent } from './components/dashboard/tarea/modal/agregar/addTarea.component';
-import { EditTareaComponent } from './components/dashboard/tarea/modal/editar/editTarea.component';
+import { FormTareaComponent } from './components/dashboard/tarea/formTarea.component';
 
 //COMPONENTES USUARIOS
 import { ContactoComponent } from './components/dashboard/contacto/contacto.component';
@@ -38,6 +36,7 @@ import { FormContactoComponent } from './components/dashboard/contacto/formConta
 
 //IMPORTAR HISTORIAL
 import { HistorialComponent } from './components/dashboard/historial/historial.component';
+
 
 @NgModule({
   declarations: [
@@ -50,10 +49,8 @@ import { HistorialComponent } from './components/dashboard/historial/historial.c
     SignupComponent,
     DashboardComponent,
     NavbarComponent,
-    AddCategoriaComponent,
-    EditCategoriaComponent,
-    AddTareaComponent,
-    EditTareaComponent,
+    FormCategoriaComponent,
+    FormTareaComponent,
     FormContactoComponent,
     HistorialComponent
   ],

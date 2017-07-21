@@ -7,11 +7,14 @@ import { UsuarioService } from '../../../services/usuario.service';
   styles: []
 })
 export class UsuarioComponent implements OnInit {
-
+  usuario:any;
   constructor(private usuarioService:UsuarioService) { }
 
   ngOnInit() {
-    this.usuarioService.getUsuarios().subscribe();
+    this.usuarioService.getUsuario().subscribe(data => {
+      this.usuario = data;
+      console.log(this.usuario);
+    });
   }
 
 }

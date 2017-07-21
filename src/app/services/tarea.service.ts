@@ -6,7 +6,6 @@ import 'rxjs/add/operator/map';
 //Inyectable
 @Injectable() 
 export class TareaService{
-    uriTarea = "http://localhost:3000/api/tareas";
     tareas:any[];
 
     //Constructor
@@ -14,44 +13,73 @@ export class TareaService{
     }
 
     //Obtener Tareas
-    getTareas() {
-        return this._http.get(this.uriTarea)
-        .map(res => {
-            this.tareas = res.json();
-        });
+    public getTareas() {
+      let uriTarea = "http://localhost:3000/api/tareas";
+      let headers = new Headers({
+        'Authorization': localStorage.getItem('token')
+      });
+      let options = new RequestOptions({ headers: headers});
+      return this._http.get(uriTarea, options)
+      .map(res => res.json());
+    }
+
+    //Obtener Tarea
+    public getTarea(idTarea:number) {
+      let uriTarea = "http://localhost:3000/api/tareas/" + idTarea;
+      let headers = new Headers({
+        'Authorization': localStorage.getItem('token')
+      });
+
+      let options = new RequestOptions({ headers: headers});
+      return this._http.get(uriTarea, options)
+      .map(res => {
+        console.log(res.json());
+        return res.json();
+      });
     }
 
     //Agregar Tareas
-    public addTareas(tarea: any) {
-    let tareaUri:string = "http://localhost:3000/api/tareas/";
+    public newtarea(tarea:any) {
+      let uriTarea = "http://localhost:3000/api/tareas/";
+      let data = JSON.stringify(tarea);
+      let headers = new Headers({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token')
+      });
 
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+      return this._http.post(uriTarea, data, { headers })
+      .map(res => {
+        return res.json();
+      });
+    }
 
+    //Editar Contacto
+    public editTarea(tarea:any, idTarea:any) {
+      let uriTarea = "http://localhost:3000/api/tareas/" + idTarea;
+      let data = JSON.stringify(tarea);
+      let headers = new Headers({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token')
+      });
+
+      return this._http.put(uriTarea, data, { headers })
+      .map(res => {
+        return res.json();
+      });
+    }
+
+    
+  //ELIMINAR
+  public deleteTarea(idTarea:any) {
+    let uriTarea = "http://localhost:3000/api/tareas/" + idTarea;
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': localStorage.getItem('token')
+    });
     let options = new RequestOptions({headers: headers});
-    let data = JSON.stringify(tarea);
-
-    this._http.post(tareaUri, data, options)
-      .subscribe(res => {
-        console.log(res.json());
-        this._router.navigate(['dashboard/tareas']);
-      }, error => {
-        console.log(error.text());
-      });
-  }
-
-  //Eliminar tarea
-    public deleteTarea(idTarea:  any){
-    let uriEliminarTarea :string = "http://localhost:3000/api/tareas/" + idTarea;
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    let options = new RequestOptions({headers: headers})
-    this._http.delete(uriEliminarTarea, options)
-      .subscribe(res => {
-        console.log(res.json());
-        this._router.navigate(['dashboard']);
-      }, error => {
-        console.log(error.text());
-      });
+    return this._http.delete(uriTarea, options)
+    .map(res => {
+      return res.json();
+    });
   }
 }

@@ -7,18 +7,28 @@ import { TareaService } from '../../../services/tarea.service';
   styles: []
 })
 export class TareaComponent implements OnInit {
-
+  tareas:any[] = [];
   constructor(private tareaService:TareaService) { }
 
-  ngOnInit() {
-    this.tareaService.getTareas().subscribe();
+
+  public inicializar() {
+    this.tareaService.getTareas().subscribe(data => {
+      this.tareas = data;
+      console.log(this.tareas);
+    });
   }
 
-  //Eliminar
-  public eliminarTarea(idTarea:any){
-    console.log("Se eliminó la tarea " + idTarea);
-    this.tareaService.deleteTarea(idTarea);
-    location.reload(true);
+  ngOnInit() {
+    this.inicializar();
+  }
+
+  eliminarTarea(idTarea:any) {
+    this.tareaService.deleteTarea(idTarea)
+    .subscribe(res => {
+      if(res.estado) {
+        this.inicializar();
+      }
+    });
   }
 
 }

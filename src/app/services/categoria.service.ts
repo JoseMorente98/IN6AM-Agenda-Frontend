@@ -5,67 +5,81 @@ import 'rxjs/add/operator/map';
 
 @Injectable() 
 export class CategoriaService{
-    uriCategoria = "http://localhost:3000/api/categorias";
     categorias:any[];
 
     //Constructor
     constructor(private _http: Http, private _router: Router){
     }
 
-    //Obtener Categorias
-    getCategorias() {
+    //Obtener categorias
+    public getCategorias() {
       let uriCategoria = "http://localhost:3000/api/categorias";
-      return this._http.get(uriCategoria)
+      let headers = new Headers({
+        'Authorization': localStorage.getItem('token')
+      });
+      let options = new RequestOptions({ headers: headers});
+      return this._http.get(uriCategoria, options)
       .map(res => res.json());
     }
 
-    //Agregar Categoria
-    public addCategoria(categoria: any) {
-    let categoriaUri:string = "http://localhost:3000/api/categorias/";
-
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-
-    let options = new RequestOptions({headers: headers});
-    let data = JSON.stringify(categoria);
-
-    this._http.post(categoriaUri, data, options)
-      .subscribe(res => {
-        console.log(res.json());
-        this._router.navigate(['dashboard/categoria']);
-      }, error => {
-        console.log(error.text());
+    //Obtener Tarea
+    public getCategoria(idCategoria:number) {
+      let uriCategoria = "http://localhost:3000/api/categorias/" + idCategoria;
+      let headers = new Headers({
+        'Authorization': localStorage.getItem('token')
       });
-  }
 
-  //Eliminar Categoria
-  public deleteCategoria(idCategoria:  any){
-    let uriEliminarCategoria :string = "http://localhost:3000/api/categorias/" + idCategoria;
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    let options = new RequestOptions({headers: headers})
-    this._http.delete(uriEliminarCategoria, options)
-      .subscribe(res => {
-        console.log(res.json());
-        this._router.navigate(['dashboard']);
-      }, error => {
-        console.log(error.text());
-      });
-  }
-
-  //Eliminar Categoria
-    public getCategoria(idCategoria:any){
-    let uriCategoria :string = "http://localhost:3000/api/categorias/" + idCategoria;
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    let options = new RequestOptions({headers: headers})
-    this._http.get(uriCategoria, options)
-      .subscribe(res => {
+      let options = new RequestOptions({ headers: headers});
+      return this._http.get(uriCategoria, options)
+      .map(res => {
         console.log(res.json());
         return res.json();
-      }, error => {
-        console.log(error.text());
       });
-  }
+    }
 
+    //Agregar categorias
+    public newCategoria(categoria:any) {
+      let uriCategoria = "http://localhost:3000/api/categorias/";
+      let data = JSON.stringify(categoria);
+      let headers = new Headers({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token')
+      });
+
+      return this._http.post(uriCategoria, data, { headers })
+      .map(res => {
+        return res.json();
+      });
+    }
+
+    //Editar Contacto
+    public editCategoria(categoria:any, idCategoria:any) {
+      let uriCategoria = "http://localhost:3000/api/categorias/" + idCategoria;
+      let data = JSON.stringify(categoria);
+      let headers = new Headers({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token')
+      });
+
+      return this._http.put(uriCategoria, data, { headers })
+      .map(res => {
+        return res.json();
+      });
+    }
+
+    
+  //ELIMINAR
+  public deleteCategoria(idCategoria:any) {
+    let uriCategoria = "http://localhost:3000/api/categorias/" + idCategoria;
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': localStorage.getItem('token')
+    });
+    let options = new RequestOptions({headers: headers});
+    return this._http.delete(uriCategoria, options)
+    .map(res => {
+      return res.json();
+    });
+  }
+  
 }

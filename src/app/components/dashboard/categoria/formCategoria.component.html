@@ -1,0 +1,34 @@
+<h2>Categoria</h2>
+<button class="btn btn-outline-success"
+  [routerLink]="['/dashboard/categoria']">Regresar</button>
+<button class="btn btn-outline-primary"
+[routerLink]="['/dashboard/categoria', 'nueva']">Nueva Categoria</button>
+<hr>
+<div class="alert alert-success alert-dismissible fade show" role="alert"
+*ngIf="notificacion.estado">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <strong>{{ notificacion.mensaje }}</strong>
+</div>
+
+<div *ngIf="formularioCategoria">
+  <form (ngSubmit)="guardarCambios()" [formGroup]="formularioCategoria">
+          <div class="form-group row col-6">
+            <label for="inputNombre">Nombre</label>
+            <input class="form-control" type="text" formControlName="nombre" placeholder="Nombre de la Categoria" />
+            <div class="form-control-feedback" *ngIf="formularioCategoria.get('nombre').errors?.required">
+            Este campo es requerido
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-10">
+              <button
+                [disabled]="formularioCategoria.valid"
+                type="submit" class="btn btn-outline-primary">
+                Guardar Cambios
+              </button>
+            </div>
+          </div>
+  </form>
+</div>
